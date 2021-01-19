@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <template id="report_cq_invoice_document_inherit" inherit_id="account.report_invoice_document">
+            <xpath expr="//t[@t-set='address']" position="replace">
+
+            </xpath>
+            <xpath expr="//div[@class='page']" position="before">
+                <div class="address">
+                    <span style="margin-left:50px;" t-field="o.partner_id.name"/><br/>
+                    <span style="margin-left:50px;" t-if="o.partner_id.street" t-field="o.partner_id.street"/><span  t-if="o.partner_id.street">,</span>
+                    <span t-if="o.partner_id.street2" t-field="o.partner_id.street2"/><span  t-if="o.partner_id.street2">,</span>
+                    <span t-if="o.partner_id.city" t-field="o.partner_id.city"/><span  t-if="o.partner_id.city">,</span>
+                    <span t-if="o.partner_id.state_id.name" t-field="o.partner_id.state_id.name"/><span  t-if="o.partner_id.state_id.name">,</span>
+                    <span t-if="o.partner_id.country_id.name" t-field="o.partner_id.country_id.name"/><br/>
+                    <span style="margin-left:50px;" t-if="o.partner_id.zip" t-field="o.partner_id.zip"/>
+                </div>
+                <table>
+                    <tr>
+                        <td width="500"></td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td colspan="2"><h5 style="font-weight: bold;">TAX INVOICE</h5></td>
+                                </tr>
+                                <tr>
+                                    <td width="120px" style="font-weight: bold;">Invoice No:</td>
+                                    <td><span t-field="o.name"/></td>
+                                </tr>
+                                <tr>
+                                    <td width="120px" style="font-weight: bold;">Invoice Date:</td>
+                                    <td><span t-field="o.invoice_date"/></td>
+                                </tr>
+                                <tr>
+                                    <td width="120px" style="font-weight: bold;">Due Date:</td>
+                                    <td><span t-field="o.invoice_date_due"/></td>
+                                </tr>
+                                <tr>
+                                    <td width="120px" style="font-weight: bold;">Sales Person:</td>
+                                    <td><span t-field="o.invoice_user_id.name"/></td>
+                                </tr>
+                                <tr>
+                                    <td width="120px" style="font-weight: bold;">Reference:</td>
+                                    <td><span t-field="o.ref"/></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <div class="col-12"><div style="height:10px;"/></div>
+            </xpath>
+
+            <xpath expr="//div[@class='page']/h2" position="replace"></xpath>
+            <xpath expr="//div[@class='page']/div[@id='informations']" position="replace"></xpath>
+
+            <xpath expr="//p[@t-if='o.invoice_payment_term_id']" position="after">
+                <p >This document is computer generated, no signature is required</p>
+            </xpath>
+        </template>
+    </data>
+</odoo>
